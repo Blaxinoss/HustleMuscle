@@ -12,6 +12,22 @@ dist
 dist-ssr
 *.local
 
+# Ignore node_modules
+client/node_modules/
+server/node_modules/
+
+# Ignore build outputs
+client/build/
+server/dist/
+
+# Ignore editor settings (optional if private project)
+.vscode/
+
+# Ignore environment files
+client/.env
+server/.env
+
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
