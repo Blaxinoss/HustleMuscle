@@ -27,7 +27,7 @@ const ExpenseManager = () => {
     };
 
     return (
-        <div className="p-8 bg-gray-100 min-h-screen">
+        <div className="p-8 bg-black">
             <ExpenseForm onAddExpense={handleAdd} />
             <ExpenseTable
                 expenses={expenses}

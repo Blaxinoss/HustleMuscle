@@ -20,21 +20,23 @@ const ExpenseTable = ({ expenses, onEditExpense, onDeleteExpense }) => {
     };
 
     return (
-        <div className="overflow-x-auto bg-white p-6 rounded shadow-md max-w-5xl mx-auto">
-            <h2 className="text-lg font-bold text-gray-700 mb-4">Expense Records</h2>
+        <div className="overflow-x-auto bg-gray-900 p-2 md:p-6 rounded-lg shadow-md  mx-auto">
             <table className="table-auto w-full border-collapse">
-                <thead className="bg-gray-800 text-white">
+                <thead className="bg-black text-gray-200">
                     <tr>
-                        <th className="p-4">Name</th>
-                        <th className="p-4">Category</th>
-                        <th className="p-4">Amount</th>
-                        <th className="p-4">Date of Payment</th>
-                        <th className="p-4">Actions</th>
+                        <th className="p-2 md:p-4 text-left">Name</th>
+                        <th className="p-2 md:p-4 text-left">Category</th>
+                        <th className="p-2 md:p-4 text-left">Amount</th>
+                        <th className="p-2 md:p-4 text-left">Date of Payment</th>
+                        <th className="p-2 md:p-4 text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {expenses.map((expense) => (
-                        <tr key={expense._id} className="border-t text-center">
+                    {expenses.map((expense, index) => (
+                        <tr
+                            key={expense._id}
+                            className={`border-t bg-[#232427]  rounded-lg`}
+                        >
                             {editMode === expense._id ? (
                                 <>
                                     <td className="p-4">
@@ -43,7 +45,7 @@ const ExpenseTable = ({ expenses, onEditExpense, onDeleteExpense }) => {
                                             name="name"
                                             value={formData.name}
                                             onChange={handleChange}
-                                            className="border p-2 rounded w-full"
+                                            className="border border-red-600 p-2 rounded w-full bg-gray-800 text-white focus:ring-2 focus:ring-red-600"
                                         />
                                     </td>
                                     <td className="p-4">
@@ -51,7 +53,7 @@ const ExpenseTable = ({ expenses, onEditExpense, onDeleteExpense }) => {
                                             name="category"
                                             value={formData.category}
                                             onChange={handleChange}
-                                            className="border p-2 rounded w-full"
+                                            className="border border-red-600 p-2 rounded w-full bg-gray-800 text-white focus:ring-2 focus:ring-red-600"
                                         >
                                             <option value="Salary">Salary</option>
                                             <option value="Fixing">Fixing</option>
@@ -65,7 +67,7 @@ const ExpenseTable = ({ expenses, onEditExpense, onDeleteExpense }) => {
                                             name="amount"
                                             value={formData.amount}
                                             onChange={handleChange}
-                                            className="border p-2 rounded w-full"
+                                            className="border border-red-600 p-2 rounded w-full bg-gray-800 text-white focus:ring-2 focus:ring-red-600"
                                         />
                                     </td>
                                     <td className="p-4">
@@ -74,13 +76,13 @@ const ExpenseTable = ({ expenses, onEditExpense, onDeleteExpense }) => {
                                             name="dateOfPayment"
                                             value={formData.dateOfPayment}
                                             onChange={handleChange}
-                                            className="border p-2 rounded w-full"
+                                            className="border border-red-600 p-2 rounded w-full bg-gray-800 text-white focus:ring-2 focus:ring-red-600"
                                         />
                                     </td>
                                     <td className="p-4 flex justify-center gap-2">
                                         <button
                                             onClick={() => handleSave(expense._id)}
-                                            className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600"
+                                            className="bg-green-700 text-white px-3 py-1 rounded hover:bg-green-800"
                                         >
                                             Save
                                         </button>
@@ -88,22 +90,22 @@ const ExpenseTable = ({ expenses, onEditExpense, onDeleteExpense }) => {
                                 </>
                             ) : (
                                 <>
-                                    <td className="p-4">{expense.name}</td>
-                                    <td className="p-4">{expense.category}</td>
-                                    <td className="p-4">{expense.amount}</td>
-                                    <td className="p-4">
+                                    <td className="p-4 text-gray-200">{expense.name}</td>
+                                    <td className="p-4 text-gray-200">{expense.category}</td>
+                                    <td className="p-4 text-gray-200">{expense.amount}</td>
+                                    <td className="p-4 text-gray-200">
                                         {new Date(expense.dateOfPayment).toLocaleDateString()}
                                     </td>
                                     <td className="p-4 flex justify-center gap-2">
                                         <button
                                             onClick={() => handleEdit(expense)}
-                                            className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+                                            className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
                                         >
                                             Edit
                                         </button>
                                         <button
                                             onClick={() => onDeleteExpense(expense._id)}
-                                            className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+                                            className="bg-gray-600 text-white px-3 py-1 rounded hover:bg-gray-700"
                                         >
                                             Delete
                                         </button>

@@ -52,12 +52,11 @@ router.put('/:id', async (req, res) => {
 // Delete Expense
 router.delete('/:id', async (req, res) => {
     try {
-        const expense = await Expense.findById(req.params.id);
+        const expense = await Expense.findByIdAndDelete(req.params.id);
         if (!expense) {
             return res.status(404).json({ message: 'Expense not found' });
         }
 
-        await expense.remove();
         res.json({ message: 'Expense deleted successfully' });
     } catch (error) {
         res.status(500).json({ message: error.message });
