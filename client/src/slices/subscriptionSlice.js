@@ -25,13 +25,13 @@ export const deleteTrainee = createAsyncThunk('trainees/deleteTrainees', async (
 export const freezeTrainee = createAsyncThunk('trainees/freezeTrainees', async (id, thunkAPI) => {
     try {
         const response = await axios.put(`http://localhost:5000/api/trainees/${id}/freeze`)
+        console.log(response.data); // Check if the response includes the updated subscriptionEndDate
         return response.data; // Make sure you return the correct data here
 
     } catch (error) {
-        return thunkAPI.rejectWithValue('Fail to freeze Trainee subscription', error)
+        return thunkAPI.rejectWithValue('Failed to freeze Trainee subscription', error)
     }
-})
-
+});
 
 
 export const addTrainee = createAsyncThunk('trainee/addTrainee', async (traineeData, thunkAPI) => {
@@ -110,7 +110,9 @@ const subscriptionSlice = createSlice({
                 const index = state.subList.findIndex((trainee) => trainee._id === action.payload._id);
 
                 if (index !== -1) {
-                    state.subList[index].accountFreezeStatus = !state.subList[index].accountFreezeStatus;
+                    // Directly update the trainee's accountFreezeStatus with the payload
+                    state.subList[index].accountFreezeStatus = action.payload.accountFreezeStatus;
+                    state.subList[index].subscriptionEndDate = action.payload.subscriptionEndDate; // Also update subscriptionEndDate
                 } else {
                     console.error('Trainee not found in subList');
                 }

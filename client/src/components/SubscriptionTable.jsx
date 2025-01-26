@@ -42,7 +42,7 @@ const SubscriptionTable = ({ subscriptions, short }) => {
 	};
 
 	return (
-		<div className='overflow-x-auto mt-5'>
+		<div className='overflow-x-auto mt-5 p-5'>
 			{status === 'loading' && <p>Loading...</p>}
 			{error && <p className="text-red-500">{error}</p>}
 			<table className="min-w-full border border-gray-300 shadow-md rounded-lg overflow-hidden">
@@ -63,17 +63,18 @@ const SubscriptionTable = ({ subscriptions, short }) => {
 							: (<><th className="px-4 py-2 text-left text-sm font-medium">Name</th>
 								<th className="px-4 py-2 text-left text-sm font-medium">Finish Date</th>
 								<th className="px-4 py-2 text-left text-sm font-medium ">Total Cost</th>
-								<th className="px-4 py-2 text-left text-sm font-medium hidden md:table-cell">Phone</th>
-								<th className="px-4 py-2 text-left text-sm font-medium hidden md:table-cell">Start Date</th>
-								<th className="px-4 py-2 text-left text-sm font-medium hidden md:table-cell">Paid</th>
-								<th className="px-4 py-2 text-left text-sm font-medium hidden md:table-cell">Remaining</th>
-								<th className="px-4 py-2 text-left text-sm font-medium hidden md:table-cell">Discount</th>
+								{/* hidden md:table-cell */}
+								<th className="px-4 py-2 text-left text-sm font-medium ">Phone</th>
+								<th className="px-4 py-2 text-left text-sm font-medium ">Start Date</th>
+								<th className="px-4 py-2 text-left text-sm font-medium ">Paid</th>
+								<th className="px-4 py-2 text-left text-sm font-medium ">Remaining</th>
+								<th className="px-4 py-2 text-left text-sm font-medium ">Discount</th>
 								<th className="px-4 py-2 text-center text-sm font-medium">Freeze</th>
 								<th className="px-4 py-2 text-center text-sm font-medium">Actions</th></>)}
 
 					</tr>
 				</thead>
-				<tbody>
+				<tbody className='overflow-auto'>
 					{subscriptions.map((sub) => (
 						<tr key={sub._id} className="border-t bg-gray-800  text-white transition-colors h-16 items-center">
 							{editingRowId === sub._id ? (
@@ -196,11 +197,12 @@ const SubscriptionTable = ({ subscriptions, short }) => {
 										(<><td className="px-4 py-2">{sub.name}</td>
 											<td className="px-4 py-2">{new Date(sub.subscriptionEndDate).toLocaleDateString()}</td>
 											<td className="px-4 py-2">{sub.totalCost}</td>
-											<td className="px-4 py-2 hidden md:table-cell">{sub.phone}</td>
-											<td className="px-4 py-2 hidden md:table-cell">{new Date(sub.subscriptionStartDate).toLocaleDateString()}</td>
-											<td className="px-4 py-2 hidden md:table-cell">{sub.paid}</td>
-											<td className="px-4 py-2 hidden md:table-cell">{sub.remaining}</td>
-											<td className="px-4 py-2 hidden md:table-cell">{sub.discount}</td>
+											{/* hidden md:table-cell */}
+											<td className="px-4 py-2 ">{sub.phone}</td>
+											<td className="px-4 py-2 ">{new Date(sub.subscriptionStartDate).toLocaleDateString()}</td>
+											<td className="px-4 py-2 ">{sub.paid}</td>
+											<td className="px-4 py-2 ">{sub.remaining}</td>
+											<td className="px-4 py-2 ">{sub.discount}</td>
 
 											{/* Freeze Button */}
 											<td className="px-4 py-2 text-center">
@@ -217,7 +219,7 @@ const SubscriptionTable = ({ subscriptions, short }) => {
 												<div className='text-center flex items-center justify-center '>
 													<button
 														onClick={() => handleEditClick(sub)}
-														className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 hidden lg:block"
+														className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 "
 													>
 														Edit
 													</button>

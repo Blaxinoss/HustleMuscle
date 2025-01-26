@@ -6,8 +6,9 @@ const dotenv = require('dotenv')
 const Cors = require('cors');
 const User = require('./model/User.js')
 const app = express();
-const traineeRoutes = require('./traineeRoutes.js')
-const expensesRoutes = require('./expensesRoutes.js')
+const traineeRoutes = require('./Routes/traineeRoutes.js')
+const expensesRoutes = require('./Routes/expensesRoutes.js')
+const trainersRoutes = require('./Routes/trainersRoutes.js')
 
 dotenv.config()
 app.use(Cors())
@@ -52,7 +53,7 @@ app.post("/login", async (req, res) => {
 
 app.use('/api/trainees', traineeRoutes)
 app.use('/api/expenses', expensesRoutes);
-
+app.use('/api/trainers', trainersRoutes)
 
 // Start server
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

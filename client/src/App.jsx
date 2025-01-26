@@ -2,7 +2,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 // import SubscriptionPage from './components/SubscriptionPage';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
+import AllUsers from './components/DetailedUsers/AllUsers.jsx';
+import UserDetails from './components/DetailedUsers/UserDetails.jsx';
 import ErrorBoundary from './components/ErrorBoundary';
 import ExpenseManager from './components/Expenses/ExpenseManager';
 import Login from './components/Login.jsx';
@@ -45,6 +47,8 @@ function App() {
 								<Route path="/expenses" element={<ExpenseManager />} />
 
 								<Route path="/dashboard" element={<Dashboard />} />
+								<Route path='/allUsers' element={<AllUsers />} />
+								<Route path='/userDetails/:phone' element={<UserDetails />} />
 								<Route path="*" element={<ErrorBoundary />} />
 							</Route>
 						</Route>

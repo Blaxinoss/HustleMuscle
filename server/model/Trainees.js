@@ -10,7 +10,6 @@ const TraineeSchema = mongoose.Schema({
     phone: {
         type: String,
         required: true,  // Phone is mandatory
-        unique: true,    // Ensures no duplicate phone numbers
         match: [/^\d{10,15}$/, 'Please provide a valid phone number'] // Basic phone validation
     },
     subscriptionStartDate: {
@@ -40,7 +39,6 @@ const TraineeSchema = mongoose.Schema({
         type: Number,
         default: 0,       // Default discount is 0
         min: 0,
-        max: 100          // Discount as a percentage
     },
     deleteFlag: {
         type: Boolean,
@@ -50,9 +48,24 @@ const TraineeSchema = mongoose.Schema({
     accountFreezeStatus: {
         type: Boolean,
         default: false    // Default account freeze status is "not frozen"
+    },
+    freezeStartDate: {
+        type: Date,
+        default: null,
     }
-}, { timestamps: true }); // Automatically add createdAt and updatedAt fields
+}, {
+    timestamps: true,
+    toJSON: { virtuals: true }, // Include virtuals when converting to JSON
+    toObject: { virtuals: true } // Include virtuals when converting to a plain object
+});
 
+TraineeSchema.virtual('daysLeft').get(function () {
+    if (!this.subscriptionEndDate) return null;
+    const today = new Date()
+    const difference = new Date(this.subscriptionEndDate) - today
+    const daysLeft = Math.ceil(difference / (1000 * 60 * 60 * 24))
+    return daysLeft;
+})
 
 // Create the Trainee model
 const Trainees = mongoose.model('Trainees', TraineeSchema);

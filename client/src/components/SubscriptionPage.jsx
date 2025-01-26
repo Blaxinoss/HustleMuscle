@@ -18,7 +18,7 @@ const SubscriptionPage = () => {
 
 
 	return (
-		<div className=" p-4
+		<div className=" p-7
 	">
 			<SubscriptionForm subscriptions={subscriptions} />
 			<SubscriptionTable subscriptions={subscriptions} short={false} />
