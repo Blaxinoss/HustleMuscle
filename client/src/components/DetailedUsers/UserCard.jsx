@@ -17,7 +17,7 @@ function UserCard({ TraineesList = [] }) {
         <>
             <h1 className="text-3xl font-bold text-white mb-6 text-center mt-4 ">Trainees</h1>
             {uniqueTraineesList.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div className="grid  sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                     {uniqueTraineesList.map((trainee) => (
                         <div
                             key={trainee.phone} // Use phone as the key
