@@ -10,17 +10,17 @@ const traineeRoutes = require('./Routes/traineeRoutes.js')
 const expensesRoutes = require('./Routes/expensesRoutes.js')
 const trainersRoutes = require('./Routes/trainersRoutes.js')
 
-dotenv.config()
-app.use(Cors())
+app.use(Cors());
+dotenv.config();
 
-const PORT = process.env.PORT || 3000;
-const DB_URI = process.env.DB_URI;
 
-// Middleware
+const PORT = process.env.PORT;
+const uri = process.env.DB_URI;
 app.use(bodyParser.json());
 
 // MongoDB connection
-mongoose.connect("mongodb://localhost:27017/hustlemuscle", {
+
+mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => console.log("MongoDB connected"))
