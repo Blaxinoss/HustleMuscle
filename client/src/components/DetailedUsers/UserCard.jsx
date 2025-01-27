@@ -14,8 +14,8 @@ function UserCard({ TraineesList = [] }) {
         index === self.findIndex((t) => t.phone === trainee.phone)
     );
     return (
-        <div className="p-4">
-            <h1 className="text-3xl font-bold text-white mb-6 text-center">Trainees</h1>
+        <>
+            <h1 className="text-3xl font-bold text-white mb-6 text-center mt-4 ">Trainees</h1>
             {uniqueTraineesList.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                     {uniqueTraineesList.map((trainee) => (
@@ -42,7 +42,7 @@ function UserCard({ TraineesList = [] }) {
             ) : (
                 <p className="text-center text-gray-400 text-lg">No trainees available.</p>
             )}
-        </div>
+        </>
     );
 }
 

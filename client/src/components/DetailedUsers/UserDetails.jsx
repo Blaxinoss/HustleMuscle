@@ -48,7 +48,7 @@ function UserDetails() {
 
             <div className="mt-6">
                 <h2 className="text-2xl">Subscription History ({totalSubscriptions})</h2>
-                <table className="w-full border border-gray-700 mt-4 rounded-lg overflow-x-auto ">
+                <table className="w-full border border-gray-700 mt-4 rounded-lg overflow-x-auto block ">
                     <thead>
                         <tr className="bg-gradient-to-r from-gray-800 to-gray-700 text-white">
                             <th className="px-4 py-2 text-left ">Subscription Start Date</th>

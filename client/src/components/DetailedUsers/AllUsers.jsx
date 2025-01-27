@@ -15,8 +15,8 @@ function AllUsers() {
     return (
         <div className='p-6'>
             {/* SearchBar */}
-            <div className='text-white'>
-                <h2 className='text-xl font-bold uppercase bg-gradient-to-r from-gray-300 via-gray-400
+            <div className='text-white text-center mb-4'>
+                <h2 className='mb-4 text-3xl font-bold uppercase bg-gradient-to-r from-gray-300 via-gray-400
              to-gray-200 bg-clip-text text-transparent'>Looking for someone? </h2>
 
                 <div className=''>
