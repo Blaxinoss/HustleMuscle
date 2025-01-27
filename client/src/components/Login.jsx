@@ -22,7 +22,7 @@ const Login = () => {
 			localStorage.setItem('log', 'true');
 
 			// Redirect to a protected route (e.g., dashboard)
-			navigate('/trainees'); // Redirect to the desired page
+			navigate('/dashboard'); // Redirect to the desired page
 		} catch (err) {
 			setMessage(err.response?.data?.message || 'Login failed');
 		}
