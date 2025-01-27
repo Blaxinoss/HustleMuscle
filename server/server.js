@@ -27,42 +27,7 @@ mongoose.connect(uri, {
     .catch((err) => console.error("MongoDB connection error:", err));
 
 
-app.post("/register", async (req, res) => {
-    const { username, password } = req.body;
 
-    if (!username || !password) {
-        return res.status(400).json({ message: "Username and password are required" });
-    }
-
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create a new user
-    const newUser = new User({ username, password: hashedPassword });
-
-    // Save the user to the database
-    await newUser.save();
-
-    res.status(201).json({ message: "User registered successfully", user: newUser });
-});
-
-app.get("/users", async (req, res) => {
-    try {
-        // Log the query being executed
-        console.log("Fetching all users...");
-
-        // Fetch all users from the database
-        const users = await User.find({});
-
-        // Log the users found
-        console.log("Users found:", users);
-
-        res.status(200).json({ message: "Users fetched successfully", users });
-    } catch (error) {
-        console.error("Error fetching users:", error);
-        res.status(500).json({ message: "Something went wrong" });
-    }
-});
 
 
 app.post("/login", async (req, res) => {
@@ -85,7 +50,7 @@ app.post("/login", async (req, res) => {
 
     if (!user) {
         console.log(users)
-        return res.status(404).json({ message: users, users: users });
+        return res.status(404).json({ message: "user not found" });
     }
 
     // Compare the provided password with the hashed password in the database
