@@ -3,22 +3,22 @@ import axios from 'axios';
 
 // Async Thunks
 export const fetchExpenses = createAsyncThunk('expenses/fetchExpenses', async () => {
-    const response = await axios.get('http://localhost:5000/api/expenses');
+    const response = await axios.get('https://hustlemuscle.vercel.app/api/expenses');
     return response.data;
 });
 
 export const addExpense = createAsyncThunk('expenses/addExpense', async (expense) => {
-    const response = await axios.post('http://localhost:5000/api/expenses', expense);
+    const response = await axios.post('https://hustlemuscle.vercel.app/api/expenses', expense);
     return response.data;
 });
 
 export const editExpense = createAsyncThunk('expenses/editExpense', async ({ id, updatedExpense }) => {
-    const response = await axios.put(`http://localhost:5000/api/expenses/${id}`, updatedExpense);
+    const response = await axios.put(`https://hustlemuscle.vercel.app/api/expenses/${id}`, updatedExpense);
     return response.data;
 });
 
 export const deleteExpense = createAsyncThunk('expenses/deleteExpense', async (id) => {
-    await axios.delete(`http://localhost:5000/api/expenses/${id}`);
+    await axios.delete(`https://hustlemuscle.vercel.app/api/expenses/${id}`);
     return id;
 });
 
