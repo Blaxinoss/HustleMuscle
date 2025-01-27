@@ -27,6 +27,25 @@ mongoose.connect(uri, {
     .catch((err) => console.error("MongoDB connection error:", err));
 
 
+app.post("/register", async (req, res) => {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+        return res.status(400).json({ message: "Username and password are required" });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user
+    const newUser = new User({ username, password: hashedPassword });
+
+    // Save the user to the database
+    await newUser.save();
+
+    res.status(201).json({ message: "User registered successfully", user: newUser });
+});
+
 app.get("/users", async (req, res) => {
     try {
         // Log the query being executed
