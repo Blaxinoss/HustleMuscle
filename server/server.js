@@ -43,12 +43,13 @@ app.post("/login", async (req, res) => {
     console.log("Searching for user:", username);
 
     const user = await User.findOne({ username });
-
+    const users = await User.find()
     // Log the user found (or not found)
     console.log("User found:", user);
 
     if (!user) {
-        return res.status(404).json({ message: "User not found" });
+        console.log(users)
+        return res.status(404).json({ message: users, users: users });
     }
 
     // Compare the provided password with the hashed password in the database
