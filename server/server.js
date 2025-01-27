@@ -48,8 +48,9 @@ app.post("/login", async (req, res) => {
     res.status(200).json({ message: "Login successful" });
 });
 
-
-
+app.get('/', (req, res) => {
+    res.send('Hello, world!'); // Sends a response to the client
+});
 
 app.use('/api/trainees', traineeRoutes)
 app.use('/api/expenses', expensesRoutes);
