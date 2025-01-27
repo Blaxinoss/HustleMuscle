@@ -30,7 +30,7 @@ mongoose.connect(uri, {
 
 
 // Login Route
-app.post("https://hustlemuscle.vercel.app/login", async (req, res) => {
+app.post("/login", async (req, res) => {
     const { username, password } = req.body;
     if (!username || !password) {
         return res.status(400).json({ message: "Username and password are required" });
