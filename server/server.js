@@ -27,6 +27,23 @@ mongoose.connect(uri, {
     .catch((err) => console.error("MongoDB connection error:", err));
 
 
+app.get("/users", async (req, res) => {
+    try {
+        // Log the query being executed
+        console.log("Fetching all users...");
+
+        // Fetch all users from the database
+        const users = await User.find({});
+
+        // Log the users found
+        console.log("Users found:", users);
+
+        res.status(200).json({ message: "Users fetched successfully", users });
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        res.status(500).json({ message: "Something went wrong" });
+    }
+});
 
 
 app.post("/login", async (req, res) => {
