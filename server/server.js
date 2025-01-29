@@ -28,20 +28,7 @@ mongoose.connect(uri, {
 
 
 
-app.post('/register', async (req, res) => {
 
-    const { username, password } = req.body;
-    const user = await User()
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = User({
-        username,
-        password: hashedPassword
-    })
-
-    await newUser.save()
-    res.status(200).json({ message: "congrats" })
-})
 
 app.post("/login", async (req, res) => {
     const { username, password } = req.body;
