@@ -1,0 +1,183 @@
+{
+    "navbar": {
+        "dashboard": "Dashboard",
+        "trainers": "Trainers",
+        "trainees": "Trainees",
+        "all_users": "All Users",
+        "expenses": "Expenses"
+    },
+    "switchButton": {
+        "switchAR": "Switch to Arabic 🇦🇪"
+    },
+    "dashboardHeader": {
+        "welcome": "Welcome",
+        "name": "Mohamed Hassan",
+        "title": "Manage your",
+        "title2": "Fitness",
+        "title3": "business",
+        "member": "New Member",
+        "expense": "New Expense"
+    },
+    "months": {
+        "Jan": "Jan",
+        "Feb": "Feb",
+        "Mar": "Mar",
+        "Apr": "Apr",
+        "May": "May",
+        "Jun": "Jun",
+        "Jul": "Jul",
+        "Aug": "Aug",
+        "Sep": "Sep",
+        "Oct": "Oct",
+        "Nov": "Nov",
+        "Dec": "Dec"
+    },
+    "monthsArray": [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+    ],
+    "numCards": {
+        "revenue": "Revenue",
+        "members": "Members",
+        "needToCollect": "Need to Collect",
+        "expire": "Expiring Subscriptions"
+    },
+    "price": "EGP",
+    "toCollect": "To Collect",
+    "toCollectEmpty": "No Subscriptions will finish this week :C",
+    "toCollectSoon1": "Should pay by",
+    "toCollectSoon2": "Days Left",
+    "cards": {
+        "capacity": "Gym Capacity",
+        "revenue": "Monthly Revenue",
+        "devNotif": "Development notifications"
+    },
+    "Donut": {
+        "label1": "Freeze",
+        "label2": "Ongoing"
+    },
+    "subscription": {
+        "name": "Name",
+        "finishDate": "Finish Date",
+        "phone": "Phone",
+        "remaining": "Remaining",
+        "freeze": "Freeze",
+        "actions": "Actions",
+        "edit": "Edit",
+        "delete": "Delete",
+        "unfreeze": "Unfreeze",
+        "totalCost": "Total Cost",
+        "paid": "Paid",
+        "startDate": "Start Date",
+        "discount": "Discount"
+    },
+    "lookingForSomeone": "Looking for someone?",
+    "searchPlaceholder": "🔎Type a name.",
+    "trainees": "Trainees",
+    "moreInfo": "More Info",
+    "noTrainees": "No trainees available.",
+    "userDetails": {
+        "loading": "Loading",
+        "noRecordsFound": "No records found for this user.",
+        "phone": "Phone",
+        "lastSubscription": "Last Subscription",
+        "totalCosts": "Total Costs",
+        "totalPaid": "Total Paid",
+        "totalRemaining": "Total Remainings",
+        "totalDiscounts": "Total Discounts",
+        "start": "Start",
+        "end": "End",
+        "paid": "Paid",
+        "remaining": "Remaining",
+        "subscriptionHistory": "Subscription History",
+        "subscriptionStartDate": "Subscription Start Date",
+        "subscriptionEndDate": "Subscription End Date",
+        "totalCost": "Total Cost",
+        "discount": "Discount"
+    },
+    "expenseForm": {
+        "newExpense": "New Expense",
+        "expenseName": "Expense Name",
+        "chooseCategory": "Choose Category",
+        "salary": "Salary",
+        "fixing": "Fixing",
+        "bills": "Bills",
+        "placeExpenses": "Place Expenses",
+        "amount": "Amount",
+        "addExpense": "Add Expense"
+    },
+    "expenseTable": {
+        "newExpense": "Expenses",
+        "name": "Name",
+        "category": "Category",
+        "amount": "Amount",
+        "dateOfPayment": "Date of Payment",
+        "actions": "Actions",
+        "edit": "Edit",
+        "save": "Save",
+        "delete": "Delete",
+        "salary": "Salary",
+        "fixing": "Fixing",
+        "bills": "Bills",
+        "placeExpenses": "Place Expenses"
+    },
+    "trainers": {
+        "title": "Trainers Management"
+    },
+    "Trainersform": {
+        "title": "New Trainer",
+        "toggleButton": "Form",
+        "loading": "Loading...",
+        "error": "Error occurred:",
+        "nameLabel": "Name",
+        "phoneLabel": "Phone",
+        "salaryLabel": "Salary",
+        "raiseLabel": "Raise",
+        "saveButton": "Save",
+        "clearButton": "Clear"
+    },
+    "TrainersTable": {
+        "loading": "Loading...",
+        "name": "Name",
+        "phone": "Phone",
+        "salary-net": "Salary-net",
+        "raise": "Raise",
+        "actions": "Actions",
+        "save": "Save",
+        "cancel": "Cancel",
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "login": "Login",
+    "username": "Username",
+    "password": "Password",
+    "login_failed": "Login failed",
+    "SubscriptionForm": {
+        "form": "Form",
+        "loading": "Loading...",
+        "new_trainee": "New Trainee",
+        "name": "Name",
+        "phone": "Phone",
+        "start_date": "Start Date",
+        "finish_date": "Finish Date",
+        "total_cost": "Total Cost",
+        "paid": "Paid",
+        "remaining": "Remaining",
+        "discount": "Discount",
+        "account_status": "Account Status",
+        "ongoing": "Ongoing",
+        "freezed": "Freezed",
+        "save": "Save",
+        "clear": "Clear"
+    }
+}

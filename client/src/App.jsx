@@ -2,6 +2,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 // import SubscriptionPage from './components/SubscriptionPage';
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import Dashboard from './components/Dashboard/Dashboard';
 import AllUsers from './components/DetailedUsers/AllUsers.jsx';
 import UserDetails from './components/DetailedUsers/UserDetails.jsx';
@@ -11,29 +13,29 @@ import Login from './components/Login.jsx';
 import Navbar from './components/Navbar';
 import SubscriptionPage from './components/SubscriptionPage.jsx';
 import Trainers from './components/Trainers/Trainers';
+import './i18n';
 import store from './store.js';
 import PrivateRoute from './utils/ProtectedRoute';
 
 function App() {
 
+	const { i18n, t } = useTranslation();
 
+	useEffect(() => {
 
-	// useEffect(() => {
-	// 	const handleBeforeUnload = () => {
-	// 		// Logout the user by clearing the login status
-	// 		localStorage.setItem('log', 'false');
-	// 	};
+		console.log(i18n)
+		document.documentElement.lang = i18n.language;
+		document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
 
-	// 	// Attach the event listener
-	// 	window.addEventListener('beforeunload', handleBeforeUnload);
+		if (i18n.language === 'ar') {
+			document.documentElement.style.fontFamily = "'Almarai', sans-serif"; // Apply Arabic font
+		} else {
+			document.documentElement.style.fontFamily = "'Roboto', sans-serif"; // Apply default font (e.g., English font)
+		}
 
-	// 	// Cleanup on component unmount
-	// 	return () => {
-	// 		window.removeEventListener('beforeunload', handleBeforeUnload);
-	// 	};
-	// }, []);
-
+	}, [i18n.language])
 	return (
+
 		<>
 			<Provider store={store}>
 				<BrowserRouter>

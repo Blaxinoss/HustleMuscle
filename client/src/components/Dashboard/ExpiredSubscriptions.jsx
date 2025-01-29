@@ -1,5 +1,6 @@
 import { faLevelDownAlt, faLevelUpAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { t } from 'i18next';
 import React, { useState } from 'react';
 
 function ExpiredSubscriptions({ subscriptions }) {
@@ -22,7 +23,7 @@ function ExpiredSubscriptions({ subscriptions }) {
         >
             {/* Header Section */}
             <div className="flex gap-3 items-center">
-                <h2 className="font-sans font-bold text-xl text-white">To Collect</h2>
+                <h2 className="font-sans font-bold text-xl text-white">{t('toCollect')}</h2>
                 <FontAwesomeIcon
                     className="cursor-pointer text-white"
                     size="2x"
@@ -34,7 +35,7 @@ function ExpiredSubscriptions({ subscriptions }) {
             {/* List Section */}
             {openSlider && (
                 <ul className="mt-3 space-y-2">
-                    {BackInSeverSubscriptions.map((sub, index) => {
+                    {BackInSeverSubscriptions.length > 0 ? (BackInSeverSubscriptions.map((sub, index) => {
 
                         return (
                             <li
@@ -42,7 +43,7 @@ function ExpiredSubscriptions({ subscriptions }) {
                                 key={index}
                             >
                                 <div>
-                                    {sub.name} ({sub.phone}) should pay by{' '}
+                                    {sub.name} ({sub.phone}) {t('toCollectSoon1')}{' '}{' '}
                                     {new Date(sub.subscriptionEndDate).toLocaleDateString()}
                                 </div>
                                 <span
@@ -54,11 +55,11 @@ function ExpiredSubscriptions({ subscriptions }) {
 
                                         }`}
                                 >
-                                    {sub.daysLeft} Day{sub.daysLeft !== 1 ? 's' : ''} Left
+                                    {t('toCollectSoon2')} {sub.daysLeft}   {t('toCollectSoon3')}
                                 </span>
                             </li>
                         );
-                    })}
+                    })) : (<div className='text-center my-5 text-green-500 text-2xl'>{t("toCollectEmpty")}</div>)}
                 </ul>
             )}
         </div>

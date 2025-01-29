@@ -12,6 +12,7 @@ import {
 
 
 
+import { t } from "i18next";
 import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrainee } from "../../slices/subscriptionSlice";
@@ -96,7 +97,7 @@ const Dashboard = () => {
 
 
         const doughnutData = {
-            labels: ["Freeze", "Ongoing"],
+            labels: [t('Donut.label1'), t('Donut.label2')],
             datasets: [
                 {
                     data: [subfreezedCounts, numMembers - subfreezedCounts],
@@ -108,11 +109,13 @@ const Dashboard = () => {
             ],
         };
 
+        const monthsArray = t('monthsArray', { returnObjects: true });
+
         const lineData = {
-            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            labels: [...monthsArray],
             datasets: [
                 {
-                    label: "Revenue",
+                    label: t('numCards.revenue'),
                     data: monthlyRevenue,
                     borderColor: "#10B981",
                     backgroundColor: "rgba(16, 185, 129, 0.2)",
@@ -121,21 +124,26 @@ const Dashboard = () => {
                 },
             ],
         };
-
+        const isRtl = document.documentElement.getAttribute('dir') === 'rtl';
 
         const lineOptions = {
             responsive: true,
             plugins: {
                 legend: { display: false },
+                tooltip: {
+                    rtl: isRtl, // Ensure tooltips are also shown in RTL mode
+                },
             },
             scales: {
                 x: {
                     grid: { display: false },
                     ticks: { color: "#9CA3AF" },
+                    reverse: isRtl,
                 },
                 y: {
                     grid: { color: "#374151" },
                     ticks: { color: "#9CA3AF" },
+
                 },
             },
         };

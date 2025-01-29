@@ -1,8 +1,12 @@
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, Outlet } from 'react-router-dom';
+import LanguageSwitcher from './LanguageSwitcher';
 function Navbar() {
+
+	const { t } = useTranslation();
 	const [mobileMenu, setMobileMenu] = useState(false);
 
 
@@ -50,7 +54,7 @@ function Navbar() {
 											to='/dashboard'
 											onClick={() => setMobileMenu(false)}
 										>
-											Dashboard
+											{t("navbar.dashboard")}
 										</Link>
 
 										<Link
@@ -58,21 +62,21 @@ function Navbar() {
 											onClick={() => setMobileMenu(false)}
 											className="text-white hover:bg-blue-600 p-3 hover:p-3  rounded-md cursor-pointer hover:duration-300"
 										>
-											Trainers
+											{t("navbar.trainers")}
 										</Link>
 										<Link
 											to='/trainees'
 											onClick={() => setMobileMenu(false)}
 											className="text-white hover:bg-blue-600 p-3 hover:p-3  rounded-md cursor-pointer hover:duration-300"
 										>
-											Trainees
+											{t("navbar.trainees")}
 										</Link>
 										<Link
 											to='/allUsers'
 											className="text-white hover:bg-blue-600 p-3 hover:p-3  rounded-md cursor-pointer hover:duration-300"
 											onClick={() => setMobileMenu(false)}
 										>
-											All Users
+											{t("navbar.all_users")}
 										</Link>
 
 										<Link
@@ -80,7 +84,7 @@ function Navbar() {
 											className="text-white hover:bg-blue-600 p-3 hover:p-3  rounded-md cursor-pointer hover:duration-300"
 											onClick={() => setMobileMenu(false)}
 										>
-											Expenses
+											{t("navbar.expenses")}
 										</Link>
 
 									</ul>
@@ -90,39 +94,40 @@ function Navbar() {
 
 					<ul className=" hidden md:flex  transition-[hover] text-xs lg:gap-20 md:text-[1.1rem]">
 						<Link
-							className="text-white  hover:bg-blue-600 p-3 hover:p-3  rounded-md cursor-pointer hover:duration-300"
+							className=" text-white  hover:bg-blue-600 p-3 hover:p-3  rounded-md cursor-pointer hover:duration-300"
 							to='/dashboard'
 						>
-							Dashboard
+							{t("navbar.dashboard")}
 						</Link>
 
 						<Link
 							to='/trainers'
 							className="text-white hover:bg-blue-600 p-3 hover:p-3  rounded-md cursor-pointer hover:duration-300"
 						>
-							Trainers
+							{t("navbar.trainers")}
 						</Link>
 						<Link
 							to='/trainees'
 							className="text-white hover:bg-blue-600 p-3 hover:p-3  rounded-md cursor-pointer hover:duration-300"
 						>
-							Trainees
+							{t("navbar.trainees")}
 						</Link>
 						<Link
 							to='/allUsers'
 							className="text-white hover:bg-blue-600 p-3 hover:p-3  rounded-md cursor-pointer hover:duration-300"
 						>
-							All Users
+							{t("navbar.all_users")}
 						</Link>
 						<Link
 							to='/expenses'
 							className="text-white hover:bg-blue-600 p-3 hover:p-3  rounded-md cursor-pointer hover:duration-300"
 						>
-							Expenses
+							{t("navbar.expenses")}
 						</Link>
 
 					</ul>
 				</div >
+				<span><LanguageSwitcher /></span>
 			</div>
 			<Outlet />
 		</>

@@ -1,17 +1,18 @@
+import { t } from "i18next";
 import { Doughnut, Line } from "react-chartjs-2";
 
 const Charts = ({ doughnutData, lineData, lineOptions, doughnutOptions }) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         <div className="bg-gray-800 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-500">Gym Capacity</h3>
+            <h3 className="text-sm text-gray-500">{t('cards.capacity')}</h3>
             <Doughnut data={doughnutData} options={doughnutOptions} />
         </div>
-        <div className="bg-gray-800 p-4 rounded-lg">
-            <h3 className="text-sm text-gray-500">Monthly Revenue</h3>
+        <div className="bg-gray-800 p-4 rounded-lg ">
+            <h3 className="text-sm text-gray-500">{t('cards.revenue')}</h3>
             <Line data={lineData} options={lineOptions} />
         </div>
         <div className="bg-gray-800 p-6 rounded-lg w-full">
-            <h2 className="text-lg font-bold text-white">Development notifications</h2>
+            <h2 className="text-lg font-bold text-white">{t('cards.devNotif')}</h2>
 
             {/* UPDATE ANNOUNCMENTS */}
             <ul className="list-none space-y-4 mt-4 text-gray-400 ">

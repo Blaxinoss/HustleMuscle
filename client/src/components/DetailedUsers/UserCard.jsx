@@ -1,9 +1,11 @@
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
 function UserCard({ TraineesList = [] }) {
+    const { t } = useTranslation(); // Use the translation hook
     const navigate = useNavigate();
 
     const handleMoreInfoClick = (phone) => {
@@ -15,9 +17,9 @@ function UserCard({ TraineesList = [] }) {
     );
     return (
         <>
-            <h1 className="text-3xl font-bold text-white mb-6 text-center mt-4 ">Trainees</h1>
+            <h1 className="text-3xl font-bold text-white mb-6 text-center mt-4">{t('trainees')}</h1>
             {uniqueTraineesList.length > 0 ? (
-                <div className="grid  sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div className="grid justify-center sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                     {uniqueTraineesList.map((trainee) => (
                         <div
                             key={trainee.phone} // Use phone as the key
@@ -34,13 +36,13 @@ function UserCard({ TraineesList = [] }) {
                                 onClick={() => handleMoreInfoClick(trainee.phone)} // Pass phone to handleMoreInfoClick
                                 className="border-none text-sm text-red-500 bg-[#00000080] p-2 rounded-md mt-2 group-hover:bg-black transition-all duration-300"
                             >
-                                {trainee.info || "More Info"}
+                                {trainee.info || t('moreInfo')}
                             </button>
                         </div>
                     ))}
                 </div>
             ) : (
-                <p className="text-center text-gray-400 text-lg">No trainees available.</p>
+                <p className="text-center text-gray-400 text-lg">{t('noTrainees')}</p>
             )}
         </>
     );

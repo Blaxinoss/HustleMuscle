@@ -7,8 +7,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        cairo: ['Cairo', 'sans-serif'],
+
+        Almarai: ['Almarai', 'sans-serif'],
         sans: ['Poppins', 'Roboto', 'Open Sans', 'sans-serif'],
+
 
       },
       colors: {
@@ -39,6 +41,6 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-rtl")],
 }
 

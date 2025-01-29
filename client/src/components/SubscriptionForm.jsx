@@ -1,6 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form"; // Import watch and setValue
+import { useTranslation } from "react-i18next"; // Import useTranslation
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { addTrainee } from "../slices/subscriptionSlice";
@@ -26,7 +27,7 @@ const schema = yup.object().shape({
 	remaining: yup
 		.number()
 		.typeError("Remaining amount must be a number")
-		.min(0, "Remaining amount cannot be negative") // Ensure remaining is not negative
+		.min(0, "Remaining amount cannot be negative")
 		.required("Remaining amount is required"),
 	discount: yup.number().optional().typeError("Discount must be a number"),
 	deleteFlag: yup.boolean().default(false),
@@ -34,6 +35,7 @@ const schema = yup.object().shape({
 });
 
 const SubscriptionForm = () => {
+	const { t } = useTranslation(); // Initialize t() for translation
 	const { error, status } = useSelector((state) => state.trainees);
 	const [showForm, setShowForm] = useState(true);
 	const dispatch = useDispatch();
@@ -76,20 +78,20 @@ const SubscriptionForm = () => {
 	return (
 		<>
 			<button className="bg-white mb-5" onClick={() => setShowForm(!showForm)}>
-				Form
+				{t('SubscriptionForm.form')}
 			</button>
 			{showForm && (
 				<div className="bg-gray-800 p-6 rounded-lg shadow-md w-full mx-auto text-white">
-					{status === "loading" && <p>Loading...</p>}
+					{status === "loading" && <p>{t('SubscriptionForm.loading')}</p>}
 					{error && <p className="text-red-500">{error}</p>}
 					<form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-						<h2 className="text-xl font-bold text-green-500 mb-6">New Trainee</h2>
+						<h2 className="text-xl font-bold text-green-500 mb-6">{t('SubscriptionForm.new_trainee')}</h2>
 
 						{/* Name */}
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 							<div>
-								<label htmlFor="name" className="block">
-									Name:
+								<label htmlFor="name" className="block mb-2">
+									{t('SubscriptionForm.name')}:
 								</label>
 								<input
 									type="text"
@@ -104,8 +106,8 @@ const SubscriptionForm = () => {
 
 							{/* Phone */}
 							<div>
-								<label htmlFor="phone" className="block">
-									Phone:
+								<label htmlFor="phone" className="block mb-2">
+									{t('SubscriptionForm.phone')}:
 								</label>
 								<input
 									type="text"
@@ -122,8 +124,8 @@ const SubscriptionForm = () => {
 						{/* Start Date */}
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 							<div>
-								<label htmlFor="subscriptionStartDate" className="block">
-									Start Date:
+								<label htmlFor="subscriptionStartDate" className="block mb-2">
+									{t('SubscriptionForm.start_date')}:
 								</label>
 								<input
 									type="date"
@@ -140,8 +142,8 @@ const SubscriptionForm = () => {
 
 							{/* Finish Date */}
 							<div>
-								<label htmlFor="subscriptionEndDate" className="block">
-									Finish Date:
+								<label htmlFor="subscriptionEndDate" className="block mb-2">
+									{t('SubscriptionForm.finish_date')}:
 								</label>
 								<input
 									type="date"
@@ -160,8 +162,8 @@ const SubscriptionForm = () => {
 						{/* Total Cost */}
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 							<div>
-								<label htmlFor="totalCost" className="block">
-									Total Cost:
+								<label htmlFor="totalCost" className="block mb-2">
+									{t('SubscriptionForm.total_cost')}:
 								</label>
 								<input
 									type="number"
@@ -176,8 +178,8 @@ const SubscriptionForm = () => {
 
 							{/* Paid */}
 							<div>
-								<label htmlFor="paid" className="block">
-									Paid:
+								<label htmlFor="paid" className="block mb-2">
+									{t('SubscriptionForm.paid')}:
 								</label>
 								<input
 									type="number"
@@ -194,8 +196,8 @@ const SubscriptionForm = () => {
 						{/* Remaining */}
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 							<div>
-								<label htmlFor="remaining" className="block">
-									Remaining:
+								<label htmlFor="remaining" className="block mb-2">
+									{t('SubscriptionForm.remaining')}:
 								</label>
 								<input
 									type="number"
@@ -211,8 +213,8 @@ const SubscriptionForm = () => {
 
 							{/* Discount (Optional) */}
 							<div>
-								<label htmlFor="discount" className="block">
-									Discount:
+								<label htmlFor="discount" className="block mb-2">
+									{t('SubscriptionForm.discount')}:
 								</label>
 								<input
 									type="number"
@@ -229,16 +231,16 @@ const SubscriptionForm = () => {
 						{/* Account Status */}
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
 							<div>
-								<label htmlFor="accountFreezeStatus" className="block">
-									Account Status:
+								<label htmlFor="accountFreezeStatus" className="block mb-2">
+									{t('SubscriptionForm.account_status')}:
 								</label>
 								<select
 									id="accountFreezeStatus"
 									{...register("accountFreezeStatus")}
 									className="w-full border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:border-orange-400 bg-[#0684ff57]"
 								>
-									<option value={false} color="orange">Ongoing</option>
-									<option value={true} color="blue">Freezed</option>
+									<option value={false} color="orange">{t('SubscriptionForm.ongoing')}</option>
+									<option value={true} color="blue">{t('SubscriptionForm.freezed')}</option>
 								</select>
 								{errors.accountFreezeStatus && (
 									<span className="text-red-500 ml-2">
@@ -249,19 +251,19 @@ const SubscriptionForm = () => {
 						</div>
 
 						{/* Buttons */}
-						<div className="flex justify-center md:justify-end">
+						<div className="flex justify-center md:justify-end gap-2">
 							<button
 								type="submit"
 								className="bg-yellow-400 hover:bg-yellow-500 text-[#330d6d] font-bold py-2 px-4 rounded md:px-8 md:py-4"
 							>
-								Save
+								{t('SubscriptionForm.save')}
 							</button>
 							<button
 								onClick={clearFormInputs}
 								type="button"
 								className="bg-green-600 hover:bg-green-600 text-white font-bold py-2 px-4 rounded ml-4 md:px-8 md:py-4"
 							>
-								Clear
+								{t('SubscriptionForm.clear')}
 							</button>
 						</div>
 					</form>
