@@ -19,7 +19,7 @@ const StatsCards = ({ revenue, numMembers, needToCollect, numExpires }) => {
             </div>
             <div className="bg-gray-800 p-4 rounded-lg">
                 <h3 className="text-sm text-gray-500">{t('numCards.expire')}</h3>
-                <p className="text-2xl font-bold">{numExpires} {t('price')}</p>
+                <p className="text-2xl font-bold">{numExpires}</p>
             </div>
         </div>
     );
