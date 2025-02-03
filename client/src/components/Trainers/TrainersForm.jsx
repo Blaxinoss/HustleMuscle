@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { addTrainer } from "../../slices/trainersSlice";
 
+
 const schema = yup.object().shape({
 	name: yup.string().required("Name is required"),
 	phone: yup

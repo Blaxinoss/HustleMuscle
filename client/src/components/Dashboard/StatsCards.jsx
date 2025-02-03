@@ -1,7 +1,7 @@
 import { t } from 'i18next';
 import PropTypes from 'prop-types';
 
-const StatsCards = ({ revenue, numMembers, needToCollect, numExpires }) => {
+const StatsCards = ({ revenue, numMembers, needToCollect, numExpires, expenses }) => {
 
     return (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
@@ -20,6 +20,10 @@ const StatsCards = ({ revenue, numMembers, needToCollect, numExpires }) => {
             <div className="bg-gray-800 p-4 rounded-lg">
                 <h3 className="text-sm text-gray-500">{t('numCards.expire')}</h3>
                 <p className="text-2xl font-bold">{numExpires}</p>
+            </div>
+            <div className="bg-gray-800 p-4 rounded-lg">
+                <h3 className="text-sm text-gray-500">{t('numCards.expenses')}</h3>
+                <p className="text-2xl font-bold">{expenses}</p>
             </div>
         </div>
     );
