@@ -1,5 +1,6 @@
 import { t } from 'i18next';
 import React, { useState } from 'react';
+import { useFormStatus } from 'react-dom';
 
 const ExpenseForm = ({ onAddExpense }) => {
     const [formData, setFormData] = useState({
