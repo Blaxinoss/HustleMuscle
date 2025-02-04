@@ -75,7 +75,13 @@ const ExpenseForm = ({ onAddExpense }) => {
                     className="border border-red-600 p-2 rounded w-full bg-gray-800 text-gray-200 focus:ring-2 focus:ring-red-600"
                 />
             </div>
-            <SubmitButton />
+            <button
+                disabled={isSubmitting}
+                type="submit"
+                className={`mt-4 px-4 py-2 rounded ${isSubmitting ? 'bg-gray-400' : 'bg-red-600 hover:bg-red-700 text-white'}`}
+            >
+                {t('expenseForm.addExpense')}
+            </button>
 
         </form>
     );
@@ -84,14 +90,3 @@ const ExpenseForm = ({ onAddExpense }) => {
 export default ExpenseForm;
 
 
-const SubmitButton = () => {
-    return (
-        <button
-            disabled={isSubmitting}
-            type="submit"
-            className={`mt-4 px-4 py-2 rounded ${isSubmitting ? 'bg-gray-400' : 'bg-red-600 hover:bg-red-700 text-white'}`}
-        >
-            {t('expenseForm.addExpense')}
-        </button>
-    )
-}
