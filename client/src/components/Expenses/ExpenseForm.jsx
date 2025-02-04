@@ -1,8 +1,20 @@
 import { t } from 'i18next';
 import React, { useState } from 'react';
-import { useFormStatus } from 'react-dom';
 
 const ExpenseForm = ({ onAddExpense }) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        try {
+            await onAddExpense(formData);
+            setFormData({ name: '', category: '', amount: '', dateOfPayment: '' });
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     const [formData, setFormData] = useState({
         name: '',
         category: '',
@@ -15,12 +27,6 @@ const ExpenseForm = ({ onAddExpense }) => {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
-        const status = useFormStatus();
-        e.preventDefault();
-        onAddExpense(formData);
-        setFormData({ name: '', category: '', amount: '', dateOfPayment: '' });
-    };
 
     return (
         <form
@@ -79,13 +85,11 @@ export default ExpenseForm;
 
 
 const SubmitButton = () => {
-    const status = useFormStatus();
     return (
         <button
-            disabled={status.pending}
+            disabled={isSubmitting}
             type="submit"
-            className={`mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 ${status.pending ? 'bg-gray-400' : 'bg-red-600'}`}
-
+            className={`mt-4 px-4 py-2 rounded ${isSubmitting ? 'bg-gray-400' : 'bg-red-600 hover:bg-red-700 text-white'}`}
         >
             {t('expenseForm.addExpense')}
         </button>

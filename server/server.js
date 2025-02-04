@@ -13,11 +13,7 @@ const trainersRoutes = require('./Routes/trainersRoutes.js')
 dotenv.config();
 
 
-app.use(cors({
-    origin: 'https://hustle-muscle.vercel.app',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+
 
 
 const PORT = process.env.PORT;
