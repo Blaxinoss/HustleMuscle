@@ -255,7 +255,8 @@ const SubscriptionForm = () => {
 							<button
 								disabled={isSubmitting}
 								type="submit"
-								className="bg-yellow-400 hover:bg-yellow-500 text-[#330d6d] font-bold py-2 px-4 rounded md:px-8 md:py-4"
+								className={`bg-yellow-400 hover:bg-yellow-500 text-[#330d6d] font-bold py-2 px-4 rounded md:px-8 md:py-4 ${isSubmitting ? 'bg-gray-400' : 'bg-yellow-400'} `}
+
 							>
 								{t('SubscriptionForm.save')}
 							</button>
