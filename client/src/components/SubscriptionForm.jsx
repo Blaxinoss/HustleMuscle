@@ -5,6 +5,8 @@ import { useTranslation } from "react-i18next"; // Import useTranslation
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { addTrainee } from "../slices/subscriptionSlice";
+import Message from "../utils/Message";
+import useMessageHook from "../utils/useMessageHook";
 
 const schema = yup.object().shape({
 	name: yup.string().required("Name is required"),
@@ -38,6 +40,7 @@ const SubscriptionForm = () => {
 	const { t } = useTranslation(); // Initialize t() for translation
 	const { error, status } = useSelector((state) => state.trainees);
 	const [showForm, setShowForm] = useState(true);
+	const { message, showMessage } = useMessageHook();
 	const dispatch = useDispatch();
 
 	const {
@@ -49,6 +52,7 @@ const SubscriptionForm = () => {
 		setValue,
 	} = useForm({
 		resolver: yupResolver(schema),
+		defaultValues: { discount: 0 },
 	});
 
 	// Watch totalCost and paid fields
@@ -66,8 +70,9 @@ const SubscriptionForm = () => {
 		try {
 			// Dispatch action to add trainee
 			await dispatch(addTrainee(data));
+			showMessage(t('TraineeAdded'))
 		} catch (error) {
-			console.log(error.message); // Error handling for dispatch failure
+			showMessage(error.message)
 		}
 	};
 
@@ -77,9 +82,11 @@ const SubscriptionForm = () => {
 
 	return (
 		<>
+
 			<button className="bg-white mb-5" onClick={() => setShowForm(!showForm)}>
 				{t('SubscriptionForm.form')}
 			</button>
+			<Message message={message} />
 			{showForm && (
 				<div className="bg-gray-800 p-6 rounded-lg shadow-md w-full mx-auto text-white">
 					{status === "loading" && <p>{t('SubscriptionForm.loading')}</p>}

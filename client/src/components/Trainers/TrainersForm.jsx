@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next'; // Import useTranslation
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { addTrainer } from "../../slices/trainersSlice";
+import Message from "../../utils/Message";
+import useMessageHook from "../../utils/useMessageHook";
 
 
 const schema = yup.object().shape({
@@ -31,7 +33,7 @@ const TrainersForm = ({ trainerList }) => {
 	const { t } = useTranslation(); // Initialize t() for translation
 	const { error, status } = useSelector((state) => state.trainers);
 	const [showForm, setShowForm] = useState(true);
-
+	const { message, showMessage } = useMessageHook();
 	const dispatch = useDispatch();
 
 	const {
@@ -47,6 +49,7 @@ const TrainersForm = ({ trainerList }) => {
 		try {
 			// Dispatch action to add trainer
 			await dispatch(addTrainer(data));
+			showMessage(t("TrainerAdded"))
 		} catch (error) {
 			console.log(error.message); // Error handling for dispatch failure
 		}
@@ -58,6 +61,7 @@ const TrainersForm = ({ trainerList }) => {
 
 	return (
 		<>
+			<Message message={message} />
 			<button className="bg-white mb-5 text-black" onClick={() => { setShowForm(!showForm) }}>
 				{t('Trainersform.toggleButton')}
 			</button>

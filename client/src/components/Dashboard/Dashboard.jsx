@@ -48,7 +48,7 @@ const Dashboard = () => {
     const [openNotifications, setOpenNotifications] = useState(false);
     const { subList } = useSelector((state) => state.trainees);
     const expensesData = useSelector((state) => state.expenses.items);
-    
+
 
     const subscriptions = useMemo(() => subList?.filter((sub) => !sub.deleteFlag) || [], [subList]);
 
@@ -69,8 +69,8 @@ const Dashboard = () => {
 
 
         const currentYear = new Date().getFullYear();
-        const startDate = new Date(currentYear , month , 20)
-        const endDate = new Date(currentYear, month+1, 19)
+        const startDate = new Date(currentYear, month, 20)
+        const endDate = new Date(currentYear, month + 1, 19)
 
         expensesData.forEach((exp) => {
             const datePay = new Date(exp.dateOfPayment);
@@ -83,7 +83,7 @@ const Dashboard = () => {
             const subEndDate = new Date(sub.subscriptionEndDate);
 
 
-         
+
 
             if (subStartDate >= startDate && subStartDate <= endDate) {
                 revenue += sub.paid; // Add the paid amount for that month
@@ -198,21 +198,24 @@ const Dashboard = () => {
     const handleSliderChange = (event) => setSelectedMonth(Number(event.target.value));
 
     return (
-        <>        <div className="bg-black text-white min-h-screen p-6 relative">
-            <Header
-                notificationsArray={notificationsArray}
-                openNotifications={openNotifications}
-                setOpenNotifications={setOpenNotifications}
-            />
-            <Quote />
-            <AddNewButtons />
-            <StatsSlider selectedMonth={selectedMonth} handleSliderChange={handleSliderChange} />
-            <StatsCards revenue={revenue} numMembers={numMembers} needToCollect={needToCollect} numExpires={numExpires} expenses={expenses} />
-            <ExpiredSubscriptions subscriptions={subscriptions} />
-            <Charts doughnutData={doughnutData} lineData={lineData} lineOptions={lineOptions} doughnutOptions={doughnutOptions} />
+        <>
 
-        </div>
+            <div className="bg-black text-white min-h-screen p-6 relative">
+                <Header
+                    notificationsArray={notificationsArray}
+                    openNotifications={openNotifications}
+                    setOpenNotifications={setOpenNotifications}
+                />
+                <Quote />
+                <AddNewButtons />
+                <StatsSlider selectedMonth={selectedMonth} handleSliderChange={handleSliderChange} />
+                <StatsCards revenue={revenue} numMembers={numMembers} needToCollect={needToCollect} numExpires={numExpires} expenses={expenses} />
+                <ExpiredSubscriptions subscriptions={subscriptions} />
+                <Charts doughnutData={doughnutData} lineData={lineData} lineOptions={lineOptions} doughnutOptions={doughnutOptions} />
+
+            </div>
             <SubscriptionTable subscriptions={subscriptions} short={true} />
+
         </>
 
     );

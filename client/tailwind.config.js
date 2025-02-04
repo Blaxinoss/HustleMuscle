@@ -6,6 +6,36 @@ export default {
   ],
   theme: {
     extend: {
+
+      animation: {
+        messageShowUpRight: "showUpRight 3s ease-in-out alternate",
+        messageShowUpLeft: "showUpLeft 3s ease-in-out alternate",
+      },
+      keyframes: {
+        showUpRight: {
+          "0%": {
+            transform: 'translateX(100vw)'
+          },
+          "50%,80%": {
+            transform: 'translateX(0)'
+          },
+          "100%": {
+            transform: 'translateX(100vw)'
+          }
+        },
+        showUpLeft: {
+          "0%": {
+            transform: 'translateX(-100vw)'
+          },
+          "50%,80%": {
+            transform: 'translateX(0)'
+          },
+          "100%": {
+            transform: 'translateX(-100vw)'
+          }
+        },
+      },
+
       fontFamily: {
 
         Almarai: ['Almarai', 'sans-serif'],

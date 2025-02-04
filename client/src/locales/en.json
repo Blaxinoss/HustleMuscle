@@ -51,7 +51,7 @@
         "members": "Members",
         "needToCollect": "Need to Collect",
         "expire": "Expiring Subscriptions",
-        "expenses" :  "Expenses"
+        "expenses": "Expenses"
     },
     "price": "EGP",
     "toCollect": "To Collect",
@@ -69,7 +69,6 @@
     },
     "subscription": {
         "title": "Subscriptions Management",
-
         "name": "Name",
         "finishDate": "Finish Date",
         "phone": "Phone",
@@ -182,5 +181,8 @@
         "freezed": "Freezed",
         "save": "Save",
         "clear": "Clear"
-    }
+    },
+    "ExpenseAdded": "A new expense has been added.",
+    "TrainerAdded": "A new trainer has been added.",
+    "TraineeAdded": "A new subscription has been added."
 }
