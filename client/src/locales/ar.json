@@ -181,7 +181,8 @@
         "ongoing": "نشط",
         "freezed": "مُجمّد",
         "save": "حفظ",
-        "clear": "مسح"
+        "clear": "مسح",
+        "isSession": "سيشن"
     },
     "ExpenseAdded": "تم إضافة مصروف جديد",
     "TrainerAdded": "تم إضافة مدرب جديد",

@@ -52,6 +52,10 @@ const TraineeSchema = mongoose.Schema({
     freezeStartDate: {
         type: Date,
         default: null,
+    },
+    isSession: {
+        type: Boolean,
+        default: false,
     }
 }, {
     timestamps: true,

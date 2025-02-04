@@ -15,7 +15,16 @@ const schema = yup.object().shape({
 		.matches(/^\d{11}$/, "Phone number must be 11 digits")
 		.required("Phone number is required"),
 	subscriptionStartDate: yup.date().required("Start Date is required"),
-	subscriptionEndDate: yup.date().required("Finish Date is required"),
+	subscriptionEndDate: yup.date().required("Finish Date is required")
+		.test("check-start-end-same", "Start date and end date must be the same for sessions and Freeze is false", function (value) {
+			const { isSession, subscriptionStartDate, accountFreezeStatus } = this.parent;
+
+			if (isSession && value && subscriptionStartDate) {
+				return new Date(value).getTime() === new Date(subscriptionStartDate).getTime() && accountFreezeStatus === false;
+			}
+
+			return true;  // If not a session or Freeze is true, no validation needed
+		}),
 	totalCost: yup
 		.number()
 		.typeError("Total Cost must be a number")
@@ -33,7 +42,8 @@ const schema = yup.object().shape({
 		.required("Remaining amount is required"),
 	discount: yup.number().optional().typeError("Discount must be a number"),
 	deleteFlag: yup.boolean().default(false),
-	accountFreezeStatus: yup.boolean().required("Active status is required"),
+	accountFreezeStatus: yup.boolean().required("Active status is required").default(false),
+	isSession: yup.boolean().default(false),
 });
 
 const SubscriptionForm = () => {
@@ -60,15 +70,15 @@ const SubscriptionForm = () => {
 	const paid = watch("paid");
 	const discount = watch('discount')
 
-	// Calculate remaining whenever totalCost or paid changes
+
 	useEffect(() => {
 		const remaining = (totalCost || 0) - (paid || 0) - (discount || 0);
-		setValue("remaining", Math.max(0, remaining)); // Ensure remaining is not negative
+		setValue("remaining", Math.max(0, remaining));
 	}, [totalCost, paid, discount, setValue]);
 
 	const onSubmit = async (data) => {
 		try {
-			// Dispatch action to add trainee
+
 			await dispatch(addTrainee(data));
 			showMessage(t('TraineeAdded'))
 		} catch (error) {
@@ -77,7 +87,7 @@ const SubscriptionForm = () => {
 	};
 
 	const clearFormInputs = () => {
-		reset(); // This will clear all form inputs and errors
+		reset();
 	};
 
 	return (
@@ -255,7 +265,35 @@ const SubscriptionForm = () => {
 									</span>
 								)}
 							</div>
+							{/* isSession */}
+							<div>
+								<label htmlFor="isSession" className="block mb-2">
+									{t('SubscriptionForm.isSession')}:
+								</label>
+								<label htmlFor="isSession" className="inline-flex items-center cursor-pointer">
+									<input
+										type="checkbox"
+										id="isSession"
+										{...register("isSession")}
+										className="hidden"
+									/>
+									<div className="w-10 h-6 bg-gray-300 rounded-full p-1 flex items-center justify-start duration-300 ease-in-out">
+										<div
+											className={`w-4 h-4 bg-white rounded-full shadow-md transform duration-300 ease-in-out ${watch("isSession") ? "translate-x-4 bg-green-400" : "bg-red-400 left-0"
+												}`}
+										></div>
+									</div>
+								</label>
+								{errors.isSession && (
+									<span className="text-red-500 ml-2">
+										{errors.isSession.message}
+									</span>
+								)}
+							</div>
+
+
 						</div>
+
 
 						{/* Buttons */}
 						<div className="flex justify-center md:justify-end gap-2">

@@ -180,7 +180,8 @@
         "ongoing": "Ongoing",
         "freezed": "Freezed",
         "save": "Save",
-        "clear": "Clear"
+        "clear": "Clear",
+        "isSession": "Session"
     },
     "ExpenseAdded": "A new expense has been added.",
     "TrainerAdded": "A new trainer has been added.",
