@@ -50,7 +50,8 @@
         "revenue": "Revenue",
         "members": "Members",
         "needToCollect": "Need to Collect",
-        "expire": "Expiring Subscriptions"
+        "expire": "Expiring Subscriptions",
+        "expenses" :  "Expenses"
     },
     "price": "EGP",
     "toCollect": "To Collect",
@@ -67,6 +68,8 @@
         "label2": "Ongoing"
     },
     "subscription": {
+        "title": "Subscriptions Management",
+
         "name": "Name",
         "finishDate": "Finish Date",
         "phone": "Phone",

@@ -47,8 +47,14 @@ const Dashboard = () => {
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
     const [openNotifications, setOpenNotifications] = useState(false);
     const { subList } = useSelector((state) => state.trainees);
+    const expensesData = useSelector((state) => state.expenses.items);
+    
 
     const subscriptions = useMemo(() => subList?.filter((sub) => !sub.deleteFlag) || [], [subList]);
+
+
+
+
 
     // Function to calculate the monthly revenue
     const getMonthlyRevenue = (subscriptions, month) => {
@@ -58,26 +64,38 @@ const Dashboard = () => {
         let needToCollect = 0;
         let numExpires = 0;
         let subfreezedCounts = 0;
+        let expenses = 0;
         let notificationsArray = [];
 
 
+        const currentYear = new Date().getFullYear();
+        const startDate = new Date(currentYear , month , 20)
+        const endDate = new Date(currentYear, month+1, 19)
+
+        expensesData.forEach((exp) => {
+            const datePay = new Date(exp.dateOfPayment);
+            if (datePay >= startDate && datePay <= endDate)
+                expenses += exp.amount;
+        })
 
         subscriptions.forEach((sub) => {
-            const startDate = new Date(sub.subscriptionStartDate);
+            const subStartDate = new Date(sub.subscriptionStartDate);
+            const subEndDate = new Date(sub.subscriptionEndDate);
 
 
-            if (startDate.getMonth() === month) { // Compare the month of startDate with the selected month
+         
+
+            if (subStartDate >= startDate && subStartDate <= endDate) {
                 revenue += sub.paid; // Add the paid amount for that month
                 needToCollect += sub.remaining;
                 numMembers += 1;
             }
 
-            const EndDate = new Date(sub.subscriptionEndDate);
-            if (EndDate.getMonth() === month) {
+            if (subEndDate >= startDate && subEndDate <= endDate) {
                 numExpires += 1;
             }
 
-            if (EndDate.getDate() === new Date().getDate()) {
+            if (subEndDate.getDate() === new Date().getDate()) {
                 notificationsArray.push({ name: sub.name, phone: sub.phone });
             }
 
@@ -85,10 +103,7 @@ const Dashboard = () => {
                 subfreezedCounts += 1; // Correcting the increment of freezed counts
             }
 
-            if (
-                (startDate.getMonth() <= selectedMonth && EndDate.getMonth() >= selectedMonth) ||
-                startDate.getMonth() === selectedMonth
-            ) {
+            if (subStartDate >= startDate && subEndDate <= endDate) {
                 monthlyRevenue[selectedMonth] += sub.paid; // Add the paid amount for the selected month
             }
 
@@ -166,6 +181,7 @@ const Dashboard = () => {
             needToCollect,
             numMembers,
             numExpires,
+            expenses,
             notificationsArray,
             doughnutData,
             lineData,
@@ -174,7 +190,7 @@ const Dashboard = () => {
         };
     };
 
-    const { revenue, needToCollect, numMembers, numExpires, notificationsArray, doughnutData, lineData, lineOptions, doughnutOptions } = useMemo(
+    const { revenue, needToCollect, numMembers, numExpires, notificationsArray, doughnutData, lineData, lineOptions, doughnutOptions, expenses } = useMemo(
         () => getMonthlyRevenue(subscriptions, selectedMonth),
         [subscriptions, selectedMonth]
     );
@@ -191,7 +207,7 @@ const Dashboard = () => {
             <Quote />
             <AddNewButtons />
             <StatsSlider selectedMonth={selectedMonth} handleSliderChange={handleSliderChange} />
-            <StatsCards revenue={revenue} numMembers={numMembers} needToCollect={needToCollect} numExpires={numExpires} />
+            <StatsCards revenue={revenue} numMembers={numMembers} needToCollect={needToCollect} numExpires={numExpires} expenses={expenses} />
             <ExpiredSubscriptions subscriptions={subscriptions} />
             <Charts doughnutData={doughnutData} lineData={lineData} lineOptions={lineOptions} doughnutOptions={doughnutOptions} />
 
