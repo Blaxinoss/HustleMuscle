@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchTrainee } from '../slices/subscriptionSlice';
 import SubscriptionForm from './SubscriptionForm';
 import SubscriptionTable from './SubscriptionTable';
+import { useTranslation } from "react-i18next";
+
 const SubscriptionPage = () => {
+	const { t } = useTranslation();
 
 	const dispatch = useDispatch()
 	useEffect(() => {
@@ -20,6 +23,8 @@ const SubscriptionPage = () => {
 	return (
 		<div className=" p-7
 	">
+			<h1 className="text-2xl mb-4 text-white">{t('subscription.title')}</h1> {/* Example of translation */}
+
 			<SubscriptionForm subscriptions={subscriptions} />
 			<SubscriptionTable subscriptions={subscriptions} short={false} />
 		</div>
