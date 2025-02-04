@@ -15,6 +15,7 @@ const ExpenseForm = ({ onAddExpense }) => {
     };
 
     const handleSubmit = (e) => {
+        const status = useFormStatus();
         e.preventDefault();
         onAddExpense(formData);
         setFormData({ name: '', category: '', amount: '', dateOfPayment: '' });
@@ -67,14 +68,24 @@ const ExpenseForm = ({ onAddExpense }) => {
                     className="border border-red-600 p-2 rounded w-full bg-gray-800 text-gray-200 focus:ring-2 focus:ring-red-600"
                 />
             </div>
-            <button
-                type="submit"
-                className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
-            >
-                {t('expenseForm.addExpense')}
-            </button>
+            <SubmitButton />
+
         </form>
     );
 };
 
 export default ExpenseForm;
+
+
+const SubmitButton = () => {
+    const status = useFormStatus();
+    return (
+        <button
+            disabled={status.pending}
+            type="submit"
+            className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+        >
+            {t('expenseForm.addExpense')}
+        </button>
+    )
+}

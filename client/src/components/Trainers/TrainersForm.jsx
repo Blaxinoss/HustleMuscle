@@ -37,7 +37,7 @@ const TrainersForm = ({ trainerList }) => {
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isSubmitting },
 		reset,
 	} = useForm({
 		resolver: yupResolver(schema),
@@ -138,6 +138,7 @@ const TrainersForm = ({ trainerList }) => {
 
 						<div className="flex justify-center md:justify-end gap-2">
 							<button
+								disabled={isSubmitting}
 								type="submit"
 								className="bg-yellow-400 hover:bg-yellow-500 text-[#330d6d] font-bold py-2 px-4 rounded md:px-8 md:py-4"
 							>
