@@ -3,15 +3,21 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcrypt");
 const dotenv = require('dotenv')
-const Cors = require('cors');
+const cors = require('cors');
 const User = require('./model/User.js')
 const app = express();
 const traineeRoutes = require('./Routes/traineeRoutes.js')
 const expensesRoutes = require('./Routes/expensesRoutes.js')
 const trainersRoutes = require('./Routes/trainersRoutes.js')
 
-app.use(Cors());
 dotenv.config();
+
+
+app.use(cors({
+    origin: 'https://hustle-muscle.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 
 const PORT = process.env.PORT;
