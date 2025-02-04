@@ -13,7 +13,7 @@ const trainersRoutes = require('./Routes/trainersRoutes.js')
 dotenv.config();
 
 
-
+app.use(cors())
 
 
 const PORT = process.env.PORT;
