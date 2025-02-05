@@ -186,5 +186,8 @@
     },
     "ExpenseAdded": "تم إضافة مصروف جديد",
     "TrainerAdded": "تم إضافة مدرب جديد",
-    "TraineeAdded": "تم إضافة إشتراك جديد"
+    "TraineeAdded": "تم إضافة إشتراك جديد",
+    "settings": {
+        "header": "الإعدادات"
+    }
 }

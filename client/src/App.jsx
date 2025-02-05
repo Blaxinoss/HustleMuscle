@@ -11,6 +11,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import ExpenseManager from './components/Expenses/ExpenseManager';
 import Login from './components/Login.jsx';
 import Navbar from './components/Navbar';
+import Settings from './components/Settings';
 import SubscriptionPage from './components/SubscriptionPage.jsx';
 import Trainers from './components/Trainers/Trainers';
 import './i18n';
@@ -50,6 +51,8 @@ function App() {
 								<Route path="/dashboard" element={<Dashboard />} />
 								<Route path='/allUsers' element={<AllUsers />} />
 								<Route path='/userDetails/:phone' element={<UserDetails />} />
+								<Route path="/settings" element={<Settings />} />
+
 								<Route path="*" element={<ErrorBoundary />} />
 							</Route>
 						</Route>

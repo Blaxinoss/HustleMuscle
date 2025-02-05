@@ -1,4 +1,4 @@
-import { faList } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faList } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -90,6 +90,7 @@ function Navbar() {
 									</ul>
 								</div>
 							</>)}
+
 					</div>
 
 					<ul className=" hidden md:flex  transition-[hover] text-xs lg:gap-20 md:text-[1.1rem]">
@@ -127,7 +128,17 @@ function Navbar() {
 
 					</ul>
 				</div >
-				<span><LanguageSwitcher /></span>
+				<div className='flex items-center justify-center gap-3'>
+
+					<Link
+						to='/settings'
+						className="text-white hover:bg-red-600 p-1 hover:p-1  rounded-md cursor-pointer hover:duration-300"
+						onClick={() => setMobileMenu(false)}
+					>
+						<FontAwesomeIcon icon={faGear} size='2x' />
+					</Link>
+					<span><LanguageSwitcher /></span>
+				</div>
 			</div>
 			<Outlet />
 		</>

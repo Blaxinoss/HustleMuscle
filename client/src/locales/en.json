@@ -185,5 +185,8 @@
     },
     "ExpenseAdded": "A new expense has been added.",
     "TrainerAdded": "A new trainer has been added.",
-    "TraineeAdded": "A new subscription has been added."
+    "TraineeAdded": "A new subscription has been added.",
+    "settings": {
+        "header": "Settings"
+    }
 }

@@ -17,12 +17,11 @@ const schema = yup.object().shape({
 	subscriptionStartDate: yup.date().required("Start Date is required"),
 	subscriptionEndDate: yup.date().required("Finish Date is required")
 		.test("check-start-end-same", "Start date and end date must be the same for sessions and Freeze is false", function (value) {
-			const { isSession, subscriptionStartDate, accountFreezeStatus } = this.parent;
+			const { isSession, subscriptionStartDate, accountFreezeStatus, subscriptionEndDate } = this.parent;
 
 			if (isSession && value && subscriptionStartDate) {
 				return new Date(value).getTime() === new Date(subscriptionStartDate).getTime() && accountFreezeStatus === false;
 			}
-
 			return true;  // If not a session or Freeze is true, no validation needed
 		}),
 	totalCost: yup
@@ -69,7 +68,7 @@ const SubscriptionForm = () => {
 	const totalCost = watch("totalCost");
 	const paid = watch("paid");
 	const discount = watch('discount')
-
+	const isSession = watch('isSession')
 
 	useEffect(() => {
 		const remaining = (totalCost || 0) - (paid || 0) - (discount || 0);
@@ -277,9 +276,9 @@ const SubscriptionForm = () => {
 										{...register("isSession")}
 										className="hidden"
 									/>
-									<div className="w-10 h-6 bg-gray-300 rounded-full p-1 flex items-center justify-start duration-300 ease-in-out">
+									<div className={`relative w-14 h-6 ${isSession ? 'bg-green-500' : 'bg-red-500'}  rounded-full p-1 flex items-center justify-start duration-300 ease-in-out`}>
 										<div
-											className={`w-4 h-4 bg-white rounded-full shadow-md transform duration-300 ease-in-out ${watch("isSession") ? "translate-x-4 bg-green-400" : "bg-red-400 left-0"
+											className={`absolute left-[4px] w-4 h-4  rounded-full shadow-md transform duration-300 ease-in-out ${isSession ? "translate-x-8 bg-white" : "bg-black "
 												}`}
 										></div>
 									</div>
