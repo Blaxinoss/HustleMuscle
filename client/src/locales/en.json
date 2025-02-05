@@ -187,6 +187,15 @@
     "TrainerAdded": "A new trainer has been added.",
     "TraineeAdded": "A new subscription has been added.",
     "settings": {
-        "header": "Settings"
+        "header": "Settings",
+        "accounts": "Accounts",
+        "changePassword": "Change Password",
+        "forwho": "for user: ",
+        "updatePassword": "Update Password",
+        "newPassword": "New Password",
+        "addNewAccount": "Add New Account",
+        "newUsername": "New Username",
+        "addAccount": "Add Account",
+        "management": "Management"
     }
 }

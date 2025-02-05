@@ -188,6 +188,15 @@
     "TrainerAdded": "تم إضافة مدرب جديد",
     "TraineeAdded": "تم إضافة إشتراك جديد",
     "settings": {
-        "header": "الإعدادات"
+        "header": "الإعدادات",
+        "accounts": "الحسابات",
+        "changePassword": "تغيير كلمة المرور",
+        "forwho": "خاص بحساب :",
+        "updatePassword": "تحديث كلمة المرور",
+        "newPassword": "كلمة المرور الجديدة",
+        "addNewAccount": "إضافة حساب جديد",
+        "newUsername": "اسم المستخدم الجديد",
+        "addAccount": "إضافة حساب",
+        "management": "الإدارة"
     }
 }
