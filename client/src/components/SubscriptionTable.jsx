@@ -182,14 +182,19 @@ const SubscriptionTable = ({ subscriptions, short }) => {
 											<td className="px-4 py-2">{sub.remaining}</td>
 
 											{/* Freeze Button */}
-											<td className="px-4 py-2 text-center rtl:text-right ">
-												<button
-													onClick={() => handleFreezeTrainee(sub._id)}
-													className={`btn px-3 py-1 rounded text-white ${sub.accountFreezeStatus ? "bg-green-500 hover:bg-green-600" : "bg-blue-400 hover:bg-blue-400"}`}
-												>
-													{sub.accountFreezeStatus ? t('subscription.unfreeze') : t('subscription.freeze')}
-												</button>
-											</td>
+											{new Date() < new Date(sub.subscriptionEndDate) && !sub.isSession ?
+												(<td className="px-4 py-2 text-center rtl:text-right ">
+													<button
+														onClick={() => handleFreezeTrainee(sub._id)}
+														className={`btn px-3 py-1 rounded text-white ${sub.accountFreezeStatus ? "bg-green-500 hover:bg-green-600" : "bg-blue-400 hover:bg-blue-400"}`}
+													>
+														{sub.accountFreezeStatus ? t('subscription.unfreeze') : t('subscription.freeze')}
+													</button>
+												</td>) : (
+													<td className="px-4 py-2 text-center rtl:text-right ">
+
+													</td>
+												)}
 										</>
 									) : (
 										<>
@@ -203,14 +208,19 @@ const SubscriptionTable = ({ subscriptions, short }) => {
 											<td className="px-4 py-2">{sub.discount}</td>
 
 											{/* Freeze Button */}
-											<td className="px-4 py-2 text-center">
-												<button
-													onClick={() => handleFreezeTrainee(sub._id)}
-													className={`btn px-3 py-1 rounded text-white ${sub.accountFreezeStatus ? "bg-green-500 hover:bg-green-600" : "bg-blue-400 hover:bg-blue-400"}`}
-												>
-													{sub.accountFreezeStatus ? t('subscription.unfreeze') : t('subscription.freeze')}
-												</button>
-											</td>
+											{new Date() < new Date(sub.subscriptionEndDate) && !sub.isSession ?
+												(<td className="px-4 py-2 text-center rtl:text-right ">
+													<button
+														onClick={() => handleFreezeTrainee(sub._id)}
+														className={`btn px-3 py-1 rounded text-white ${sub.accountFreezeStatus ? "bg-green-500 hover:bg-green-600" : "bg-blue-400 hover:bg-blue-400"}`}
+													>
+														{sub.accountFreezeStatus ? t('subscription.unfreeze') : t('subscription.freeze')}
+													</button>
+												</td>) : (
+													<td className="px-4 py-2 text-center rtl:text-right ">
+
+													</td>
+												)}
 
 											{/* Actions (Edit/Delete) */}
 											<td className="px-4 py-2 ">
